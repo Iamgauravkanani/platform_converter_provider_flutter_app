@@ -3,14 +3,9 @@ import 'package:provider/provider.dart';
 
 import '../../../Platform_Provider/Provider/platform_provider.dart';
 
-class Cupertino_Screen extends StatefulWidget {
+class Cupertino_Screen extends StatelessWidget {
   const Cupertino_Screen({super.key});
 
-  @override
-  State<Cupertino_Screen> createState() => _Cupertino_ScreenState();
-}
-
-class _Cupertino_ScreenState extends State<Cupertino_Screen> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -20,10 +15,8 @@ class _Cupertino_ScreenState extends State<Cupertino_Screen> {
         trailing: CupertinoSwitch(
             value: Provider.of<PlatformProvider>(context, listen: true).isios,
             onChanged: (val) {
-              setState(() {
-                Provider.of<PlatformProvider>(context, listen: false)
-                    .changePlatform();
-              });
+              Provider.of<PlatformProvider>(context, listen: false)
+                  .changePlatform();
             }),
       ),
       child: Center(
