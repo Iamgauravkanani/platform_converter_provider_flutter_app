@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:platform_convertor_provider/Modules/App/Material_Screen/Providers/Date_Picker_Provider/date_picker_provider.dart';
 import 'package:provider/provider.dart';
 import '../../../Platform_Provider/Provider/platform_provider.dart';
 
@@ -41,19 +42,23 @@ class Cupertino_Screen extends StatelessWidget {
                                 Navigator.pop(context);
                               },
                               child: const Text("Cancel")),
-                          title:
-                              const Text("Example of Cupertino Action Sheet"),
-                          message: const Text("Type Your Message here..."),
+                          title: const Text("Cupertino Date Picker"),
+                          message: Container(
+                            height: 300,
+                            child: CupertinoDatePicker(
+                                mode: CupertinoDatePickerMode.date,
+                                initialDateTime:
+                                    Provider.of<DatePickerProvider>(context)
+                                        .datePickerModel
+                                        .dateTime,
+                                use24hFormat: false,
+                                onDateTimeChanged: (val) {
+                                  Provider.of<DatePickerProvider>(context,
+                                          listen: false)
+                                      .pickDate(pickedDate: val);
+                                }),
+                          ),
                           actions: [
-                            CupertinoActionSheetAction(
-                              isDefaultAction: true,
-                              onPressed: () {},
-                              child: const Text("Save"),
-                            ),
-                            CupertinoActionSheetAction(
-                              onPressed: () {},
-                              child: const Text("Save Later"),
-                            ),
                             CupertinoActionSheetAction(
                               onPressed: () {},
                               child: const Text("Allow"),
@@ -93,6 +98,10 @@ class Cupertino_Screen extends StatelessWidget {
                 ),
               ),
             ),
+            Text(
+                "${Provider.of<DatePickerProvider>(context, listen: true).datePickerModel.dateTime.day}/"
+                "${Provider.of<DatePickerProvider>(context, listen: true).datePickerModel.dateTime.month}/"
+                "${Provider.of<DatePickerProvider>(context, listen: true).datePickerModel.dateTime.year}"),
           ],
         ),
       ),

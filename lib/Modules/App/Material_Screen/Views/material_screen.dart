@@ -62,6 +62,8 @@ class Material_Screen extends StatelessWidget {
                 IconButton(
                     onPressed: () async {
                       DateTime? pickedDate = await showDatePicker(
+                          initialDatePickerMode: DatePickerMode.year,
+                          confirmText: "Pick",
                           context: context,
                           initialDate: DateTime.now(),
                           firstDate: DateTime(2000),
