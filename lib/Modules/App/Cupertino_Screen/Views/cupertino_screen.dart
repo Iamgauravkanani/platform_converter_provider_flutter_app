@@ -70,26 +70,27 @@ class Cupertino_Screen extends StatelessWidget {
               onPressed: () {},
             ),
             CupertinoContextMenu(
-              actions: [
+              actions: const [
                 CupertinoContextMenuAction(
-                  child: Text("Save"),
                   isDefaultAction: true,
+                  child: Text("Save"),
                 ),
                 CupertinoContextMenuAction(
-                  child: Text("Share"),
                   isDestructiveAction: true,
+                  child: Text("Share"),
                 ),
                 CupertinoContextMenuAction(child: Text("send")),
               ],
               child: Container(
                 height: 100,
                 width: 100,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                  image: NetworkImage(
-                      "https://media.istockphoto.com/id/1195743934/vector/cute-panda-character-vector-design.jpg?s=612x612&w=0&k=20&c=J3ht-bKADmsXvF6gFIleRtfJ6NGhXnfIsrwlsUF8w80="),
-                  fit: BoxFit.cover,
-                )),
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(
+                        "https://media.istockphoto.com/id/1195743934/vector/cute-panda-character-vector-design.jpg?s=612x612&w=0&k=20&c=J3ht-bKADmsXvF6gFIleRtfJ6NGhXnfIsrwlsUF8w80="),
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
             ),
           ],

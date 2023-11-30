@@ -1,11 +1,12 @@
 // ignore_for_file: must_be_immutable
-
 import 'package:flutter/material.dart';
+import 'package:platform_convertor_provider/Modules/App/Material_Screen/Providers/Date_Picker_Provider/date_picker_provider.dart';
 import 'package:platform_convertor_provider/Modules/Platform_Provider/Provider/platform_provider.dart';
 import 'package:provider/provider.dart';
 
 class Material_Screen extends StatelessWidget {
   Material_Screen({super.key});
+
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
@@ -54,7 +55,31 @@ class Material_Screen extends StatelessWidget {
                         );
                       });
                 },
-                child: Text("Modal Bottom Sheet"))
+                child: Text("Modal Bottom Sheet")),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                    onPressed: () async {
+                      DateTime? pickedDate = await showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(2000),
+                          lastDate: DateTime(2025));
+
+                      Provider.of<DatePickerProvider>(context, listen: false)
+                          .pickDate(pickedDate: pickedDate!);
+                    },
+                    icon: Icon(
+                      Icons.calendar_month,
+                      size: 35,
+                    )),
+                Text(
+                    "${Provider.of<DatePickerProvider>(context, listen: true).datePickerModel.dateTime.day}/"
+                    "${Provider.of<DatePickerProvider>(context, listen: true).datePickerModel.dateTime.month}/"
+                    "${Provider.of<DatePickerProvider>(context, listen: true).datePickerModel.dateTime.year}"),
+              ],
+            )
           ],
         ),
       ),
