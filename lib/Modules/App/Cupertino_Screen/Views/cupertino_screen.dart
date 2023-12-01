@@ -30,7 +30,7 @@ class Cupertino_Screen extends StatelessWidget {
               height: 50,
             ),
             CupertinoButton(
-                child: const Text("Cupertino Action Sheet"),
+                child: const Text("Show Date Picker"),
                 onPressed: () {
                   showCupertinoModalPopup(
                       context: context,
@@ -71,8 +71,43 @@ class Cupertino_Screen extends StatelessWidget {
               height: 50,
             ),
             CupertinoButton.filled(
-              child: const Text("Cupertino Button"),
-              onPressed: () {},
+              child: const Text("Show Time Picker"),
+              onPressed: () {
+                showCupertinoModalPopup(
+                    context: context,
+                    builder: (ctx) {
+                      return CupertinoActionSheet(
+                        cancelButton: CupertinoActionSheetAction(
+                            isDestructiveAction: true,
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text("Cancel")),
+                        title: const Text("Cupertino Date Picker"),
+                        message: SizedBox(
+                          height: 300,
+                          child: CupertinoDatePicker(
+                              mode: CupertinoDatePickerMode.time,
+                              initialDateTime:
+                                  Provider.of<DatePickerProvider>(context)
+                                      .datePickerModel
+                                      .dateTime,
+                              use24hFormat: false,
+                              onDateTimeChanged: (val) {
+                                Provider.of<DatePickerProvider>(context,
+                                        listen: false)
+                                    .pickDate(pickedDate: val);
+                              }),
+                        ),
+                        actions: [
+                          CupertinoActionSheetAction(
+                            onPressed: () {},
+                            child: const Text("Allow"),
+                          ),
+                        ],
+                      );
+                    });
+              },
             ),
             CupertinoContextMenu(
               actions: const [
@@ -102,6 +137,36 @@ class Cupertino_Screen extends StatelessWidget {
                 "${Provider.of<DatePickerProvider>(context, listen: true).datePickerModel.dateTime.day}/"
                 "${Provider.of<DatePickerProvider>(context, listen: true).datePickerModel.dateTime.month}/"
                 "${Provider.of<DatePickerProvider>(context, listen: true).datePickerModel.dateTime.year}"),
+            Text(
+                "${Provider.of<DatePickerProvider>(context, listen: true).datePickerModel.dateTime.hour}:"
+                "${Provider.of<DatePickerProvider>(context, listen: true).datePickerModel.dateTime.minute}"),
+            const SizedBox(
+              height: 20,
+            ),
+            CupertinoButton.filled(
+                child: const Text("Cupertino Alert Dialogue"),
+                onPressed: () {
+                  showCupertinoModalPopup(
+                      context: context,
+                      builder: (ctx) => CupertinoAlertDialog(
+                            title: const Text("Platform Convertor App"),
+                            content: const Text("Do You Want to Continue??"),
+                            actions: [
+                              CupertinoDialogAction(
+                                child: const Text("Yes"),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                isDefaultAction: true,
+                              ),
+                              CupertinoDialogAction(
+                                onPressed: () {},
+                                child: const Text("No"),
+                                isDestructiveAction: true,
+                              ),
+                            ],
+                          ));
+                }),
           ],
         ),
       ),
