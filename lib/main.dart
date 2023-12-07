@@ -27,7 +27,7 @@ void main() {
               )
             : CupertinoApp(
                 debugShowCheckedModeBanner: false,
-                home: Cupertino_Screen(),
+                home: Cupertino_Tab(),
               );
       },
     ),
