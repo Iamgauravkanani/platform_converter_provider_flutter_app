@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:platform_convertor_provider/Modules/Components/Cupertino_Pages/Call_Screen/Provider/SliderProvider/slider_provider.dart';
 import 'package:provider/provider.dart';
 import '../../../../App/Material_Screen/Providers/Date_Picker_Provider/date_picker_provider.dart';
 import '../../../../Platform_Provider/Provider/platform_provider.dart';
@@ -71,6 +72,15 @@ class Call_Screen extends StatelessWidget {
                 "${Provider.of<DatePickerProvider>(context, listen: true).datePickerModel.dateTime.day}/"
                 "${Provider.of<DatePickerProvider>(context, listen: true).datePickerModel.dateTime.month}/"
                 "${Provider.of<DatePickerProvider>(context, listen: true).datePickerModel.dateTime.year}"),
+            CupertinoSlider(
+              value: Provider.of<SliderProvider>(context, listen: true)
+                  .sliderModel
+                  .slidervalue,
+              onChanged: (val) {
+                Provider.of<SliderProvider>(context, listen: false)
+                    .changeValue(val: val);
+              },
+            ),
           ],
         ),
       ),

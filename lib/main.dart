@@ -4,6 +4,7 @@ import 'package:platform_convertor_provider/Modules/App/Material_Screen/Provider
 import 'package:platform_convertor_provider/Modules/App/Material_Screen/Providers/NavigationBar_Provider/navigationbar_provider.dart';
 import 'package:platform_convertor_provider/Modules/App/Material_Screen/Providers/Time_Picker_Provider/time_picker_provider.dart';
 import 'package:platform_convertor_provider/Modules/App/Material_Screen/Views/material_screen.dart';
+import 'package:platform_convertor_provider/Modules/Components/Cupertino_Pages/Call_Screen/Provider/SliderProvider/slider_provider.dart';
 import 'package:platform_convertor_provider/Modules/Platform_Provider/Provider/platform_provider.dart';
 import 'package:provider/provider.dart';
 import 'Modules/App/Cupertino_Screen/Views/cupertino_screen.dart';
@@ -16,6 +17,7 @@ void main() {
         ListenableProvider(create: (ctx) => DatePickerProvider()),
         ListenableProvider(create: (ctx) => TimePickerProvider()),
         ListenableProvider(create: (ctx) => NavigationBarProvider()),
+        ListenableProvider(create: (ctx) => SliderProvider()),
       ],
       builder: (context, child) {
         return (Provider.of<PlatformProvider>(context, listen: true).isios ==
