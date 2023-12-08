@@ -8,7 +8,7 @@ class NavigationBarProvider extends ChangeNotifier {
   void changeIndex({required int val}) {
     navigationBarModel.currentIndex = val;
     pageController.animateToPage(val,
-        duration: Duration(milliseconds: 100), curve: Curves.linear);
+        duration: const Duration(milliseconds: 100), curve: Curves.linear);
     notifyListeners();
   }
 }
