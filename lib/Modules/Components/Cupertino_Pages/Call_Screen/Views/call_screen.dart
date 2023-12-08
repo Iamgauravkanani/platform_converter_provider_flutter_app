@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:platform_convertor_provider/Modules/Components/Cupertino_Pages/Call_Screen/Provider/SliderProvider/slider_provider.dart';
+import 'package:platform_convertor_provider/Modules/Components/Cupertino_Pages/Message_Screen/Providers/Segment_Provider/segment_provider.dart';
 import 'package:provider/provider.dart';
 import '../../../../App/Material_Screen/Providers/Date_Picker_Provider/date_picker_provider.dart';
 import '../../../../Platform_Provider/Provider/platform_provider.dart';
@@ -81,6 +82,19 @@ class Call_Screen extends StatelessWidget {
                     .changeValue(val: val);
               },
             ),
+            CupertinoSegmentedControl(
+                groupValue: Provider.of<SegmentProvider>(context, listen: true)
+                    .segment
+                    .value,
+                children: <int, Widget>{
+                  0: Text("Red"),
+                  1: Text("Blue"),
+                  2: Text("Green"),
+                },
+                onValueChanged: (val) {
+                  Provider.of<SegmentProvider>(context, listen: false)
+                      .changeVal(val: val);
+                })
           ],
         ),
       ),
