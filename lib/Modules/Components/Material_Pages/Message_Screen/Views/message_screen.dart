@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../App/Material_Screen/Providers/Date_Picker_Provider/date_picker_provider.dart';
 import '../../../../App/Material_Screen/Providers/Time_Picker_Provider/time_picker_provider.dart';
+import '../../../../Platform_Provider/Provider/platform_provider.dart';
 
 class message_screen extends StatelessWidget {
   const message_screen({super.key});
@@ -10,6 +11,19 @@ class message_screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Home Screen"),
+        centerTitle: true,
+        leading: const Icon(Icons.home),
+        actions: [
+          Switch(
+              value: Provider.of<PlatformProvider>(context, listen: true).isios,
+              onChanged: (val) {
+                Provider.of<PlatformProvider>(context, listen: false)
+                    .changePlatform();
+              }),
+        ],
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

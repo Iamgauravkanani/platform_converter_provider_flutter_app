@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../App/Material_Screen/Providers/Date_Picker_Provider/date_picker_provider.dart';
 import '../../../../Platform_Provider/Provider/platform_provider.dart';
+import '../Providers/Segment_Provider/segment_provider.dart';
 
 class Message_Screen extends StatelessWidget {
   const Message_Screen({super.key});
@@ -103,20 +104,36 @@ class Message_Screen extends StatelessWidget {
                             content: const Text("Do You Want to Continue??"),
                             actions: [
                               CupertinoDialogAction(
-                                child: const Text("Yes"),
                                 onPressed: () {
                                   Navigator.pop(context);
                                 },
                                 isDefaultAction: true,
+                                child: const Text("Yes"),
                               ),
                               CupertinoDialogAction(
                                 onPressed: () {},
-                                child: const Text("No"),
                                 isDestructiveAction: true,
+                                child: const Text("No"),
                               ),
                             ],
                           ));
                 }),
+            const SizedBox(
+              height: 10,
+            ),
+            CupertinoSlidingSegmentedControl(
+                groupValue: Provider.of<SegmentProvider>(context, listen: true)
+                    .segment
+                    .value,
+                children: const <int, Widget>{
+                  0: Text("Red"),
+                  1: Text("Blue"),
+                  2: Text("Green"),
+                },
+                onValueChanged: (val) {
+                  Provider.of<SegmentProvider>(context, listen: false)
+                      .changeVal(val: val!);
+                })
           ],
         ),
       ),

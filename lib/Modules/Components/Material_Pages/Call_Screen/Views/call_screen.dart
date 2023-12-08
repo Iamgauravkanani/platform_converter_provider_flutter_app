@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../Platform_Provider/Provider/platform_provider.dart';
 
 class CallScreen extends StatelessWidget {
   CallScreen({super.key});
@@ -6,18 +9,31 @@ class CallScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Home Screen"),
+        centerTitle: true,
+        leading: const Icon(Icons.home),
+        actions: [
+          Switch(
+              value: Provider.of<PlatformProvider>(context, listen: true).isios,
+              onChanged: (val) {
+                Provider.of<PlatformProvider>(context, listen: false)
+                    .changePlatform();
+              }),
+        ],
+      ),
       key: scaffoldKey,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircularProgressIndicator(),
-            SizedBox(
+            const CircularProgressIndicator.adaptive(),
+            const SizedBox(
               height: 50,
             ),
             TextButton(
               onPressed: () {},
-              child: Text("Material Button"),
+              child: const Text("Material Button"),
             ),
             ElevatedButton(
                 onPressed: () {
@@ -29,7 +45,7 @@ class CallScreen extends StatelessWidget {
                     ),
                   );
                 },
-                child: Text("Bottom Sheet")),
+                child: const Text("Bottom Sheet")),
           ],
         ),
       ),

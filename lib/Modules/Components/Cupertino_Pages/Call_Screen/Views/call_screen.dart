@@ -86,7 +86,7 @@ class Call_Screen extends StatelessWidget {
                 groupValue: Provider.of<SegmentProvider>(context, listen: true)
                     .segment
                     .value,
-                children: <int, Widget>{
+                children: const <int, Widget>{
                   0: Text("Red"),
                   1: Text("Blue"),
                   2: Text("Green"),
