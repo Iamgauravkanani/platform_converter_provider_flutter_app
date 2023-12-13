@@ -13,7 +13,7 @@ class Material_Screen extends StatelessWidget {
   List<Widget> pages = [
     CallScreen(),
     const message_screen(),
-    const Sliver_Screen()
+    const SliverScreen()
   ];
   @override
   Widget build(BuildContext context) {

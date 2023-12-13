@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:platform_convertor_provider/Modules/Components/Cupertino_Pages/Call_Screen/Views/call_screen.dart';
 import 'package:platform_convertor_provider/Modules/Components/Cupertino_Pages/Message_Screen/Views/message_screen.dart';
-import 'package:platform_convertor_provider/Modules/Components/Cupertino_Pages/Settings_Screen/Views/settings_screen.dart';
+import '../../../Components/Cupertino_Pages/Settings_Screen/Views/c_sliver_screen.dart';
 
 class Cupertino_Tab extends StatelessWidget {
   Cupertino_Tab({super.key});
   List<Widget> pagelist = [
     const Call_Screen(),
     const Message_Screen(),
-    SettingsScreen()
+    CupertinoSliverScreen()
   ];
   @override
   Widget build(BuildContext context) {
